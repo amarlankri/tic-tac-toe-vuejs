@@ -39,9 +39,9 @@ export default {
     isHighlighted: function(i, j) {
       const index = this.getSquareIndex(i, j);
 
-      return this.winningCombination === null
-        ? false
-        : this.winningCombination.some(e => e === index);
+      return this.winningCombination
+        ? this.winningCombination.some(e => e === index)
+        : false
     }
   }
 };

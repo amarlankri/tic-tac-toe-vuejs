@@ -61,9 +61,9 @@ export default {
         this.currentContext.squares
       );
 
-      return winner === null
-        ? `Next player: ${this.player}`
-        : `Winner: ${this.player1IsNext ? player2 : player1}`;
+      return winner
+        ? `Winner: ${this.player1IsNext ? player2 : player1}`
+        : `Next player: ${this.player}`
     },
     currentContext: function() {
        return this.history[this.move];
@@ -112,18 +112,11 @@ export default {
         [0, 4, 8],
         [2, 4, 6]
       ];
-      for (let i = 0; i < lines.length; i++) {
-        const currentLine = lines[i];
-        const [a, b, c] = currentLine;
-        if (
+
+      return lines.find(([a, b, c]) =>
           squares[a] &&
           squares[a] === squares[b] &&
-          squares[a] === squares[c]
-        ) {
-          return currentLine;
-        }
-      }
-      return null;
+          squares[a] === squares[c])
     },
     getMessage: function(i) {
       const realIndex = this.getIndex(i);
